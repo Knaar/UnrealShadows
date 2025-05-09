@@ -13,11 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0516848d-7f34-4fa9-8b75-0fe2f5736699" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_Utility.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_Utility.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UnrealShadows/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnrealShadows/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_Character.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_Character.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +28,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_BasePickup.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_Character.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_GameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_GameMode.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_GameState.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_PlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Private/US_PlayerState.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Public/US_BasePickup.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Public/US_Character.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Public/US_GameInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UnrealShadows/Public/US_GameMode.h" root0="FORCE_HIGHLIGHTING" />
@@ -176,7 +175,7 @@
       <workItem from="1746754638028" duration="16546000" />
       <workItem from="1746806353522" duration="76000" />
       <workItem from="1746806451444" duration="300000" />
-      <workItem from="1746806930325" duration="5267000" />
+      <workItem from="1746806930325" duration="6932000" />
     </task>
     <servers />
   </component>
