@@ -3,8 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "US_CharacterStats.h"
+#include "US_Utility.h"
 #include "GameFramework/Character.h"
 #include "US_Character.generated.h"
+
+#define Erreturn(Str) \
+do { \
+US_Utility::PrintError(TEXT(Str), this); \
+return ; \
+} while (0)
 
 UCLASS()
 class UNREALSHADOWS_API AUS_Character : public ACharacter
@@ -45,4 +53,12 @@ protected:
 	void SprintEnd(const FInputActionValue& Value);
 	void Interact(const FInputActionValue& Value);
 
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Data", meta = (AllowPrivateAccess = "true"))
+	class UDataTable* CharacterDataTable;
+	struct FUS_CharacterStats* CharacterStats;
+
+public:
+	void UpdateCharacterStats(int32 CharacterLevel);
+	FORCEINLINE FUS_CharacterStats* GetCharacterStats() const { return CharacterStats; }
 };

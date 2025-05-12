@@ -61,7 +61,6 @@ void AUS_Character::BeginPlay()
 		PrintError(TEXT("Encanced SUS or Default Mapping Context invalid"),this);
 		return;
 	}
-		
 	Subsystem->AddMappingContext(DefaultMappingContext, 0);
 	
 }
@@ -120,5 +119,19 @@ void AUS_Character::SprintEnd(const FInputActionValue& Value)
 void AUS_Character::Interact(const FInputActionValue& Value)
 {
 	GEngine->AddOnScreenDebugMessage(3, 5.f, FColor::Red, TEXT("Interact"));
+}
+
+void AUS_Character::UpdateCharacterStats(int32 CharacterLevel)
+{
+	if (!CharacterDataTable) return;
+	TArray<FUS_CharacterStats*> CharacterStatsRows;
+	CharacterDataTable->GetAllRows<FUS_CharacterStats>(TEXT("US_Character"), CharacterStatsRows);
+
+	if(CharacterStatsRows.Num() <= 0) Erreturn("CharacterStatsRows.Num()=0");
+	const int32 NewCharacterLevel = FMath::Clamp(CharacterLevel, 1, CharacterStatsRows.Num());
+	CharacterStats = CharacterStatsRows[NewCharacterLevel - 1];
+	GetCharacterMovement()->MaxWalkSpeed = GetCharacterStats()->WalkSpeed;
+	
+	
 }
 
