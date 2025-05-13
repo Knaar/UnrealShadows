@@ -13,12 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0516848d-7f34-4fa9-8b75-0fe2f5736699" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_CharacterStats.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UnrealShadows/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnrealShadows/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/Level_01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Level_01.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_Character.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_Character.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_Utility.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_PlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UnrealShadows/Private/US_PlayerState.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_Character.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_Character.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_PlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UnrealShadows/Public/US_PlayerState.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +182,10 @@
       <workItem from="1746806353522" duration="76000" />
       <workItem from="1746806451444" duration="300000" />
       <workItem from="1746806930325" duration="12197000" />
-      <workItem from="1747069901119" duration="6523000" />
+      <workItem from="1747069901119" duration="6975000" />
+      <workItem from="1747144777928" duration="1600000" />
+      <workItem from="1747146781623" duration="1675000" />
+      <workItem from="1747158286867" duration="9546000" />
     </task>
     <servers />
   </component>

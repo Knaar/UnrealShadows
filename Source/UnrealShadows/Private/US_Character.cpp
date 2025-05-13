@@ -44,25 +44,22 @@ AUS_Character::AUS_Character()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+
+
 }
 
 void AUS_Character::BeginPlay()
 {
 	Super::BeginPlay();
+	if (!IsLocallyControlled())return;
 	APlayerController *PlayerController = Cast <APlayerController>(Controller);
-	if ( !PlayerController)
-	{
-		PrintError(TEXT("PlayerConrollerInvalid"),this);
-		return;
-	}
-	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
-	if (!Subsystem||!DefaultMappingContext)
-	{
-		PrintError(TEXT("Encanced SUS or Default Mapping Context invalid"),this);
-		return;
-	}
-	Subsystem->AddMappingContext(DefaultMappingContext, 0);
+	if ( !PlayerController) Erreturn("US_Character PlayerConrollerInvalid");
 	
+	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
+	if (!Subsystem||!DefaultMappingContext) Erreturn("Encanced SUS or Default Mapping Context invalid");
+	
+	Subsystem->AddMappingContext(DefaultMappingContext, 0);
+	UpdateCharacterStats(1);
 }
 
 void AUS_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -80,6 +77,7 @@ void AUS_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 void AUS_Character::Move(const struct FInputActionValue& Value)
 {
+	
 	const auto MovementVector = Value.Get<FVector2D>();
 	GEngine->AddOnScreenDebugMessage(0, 5.f, FColor::Yellow, FString::Printf(TEXT("MovementVector: %s"), *MovementVector.ToString()));
 	if (Controller != nullptr)
@@ -106,19 +104,34 @@ void AUS_Character::Look(const FInputActionValue& Value)
 
 void AUS_Character::SprintStart(const FInputActionValue& Value)
 {
+	
+	if (!GetCharacterStats()) Erreturn("SprintStart");
+	GetCharacterMovement()->MaxWalkSpeed = GetCharacterStats()->SprintSpeed;
 	GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Blue, TEXT("SprintStart"));
-	GetCharacterMovement()->MaxWalkSpeed = 3000.f;
 }
 
 void AUS_Character::SprintEnd(const FInputActionValue& Value)
 {
+	
+	if (!GetCharacterStats()) Erreturn("SprintStart");
+	GetCharacterMovement()->MaxWalkSpeed = GetCharacterStats()->WalkSpeed;
 	GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Blue, TEXT("SprintEnd"));
-	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 }
 
 void AUS_Character::Interact(const FInputActionValue& Value)
 {
 	GEngine->AddOnScreenDebugMessage(3, 5.f, FColor::Red, TEXT("Interact"));
+}
+
+void AUS_Character::OnRep_Score()
+{
+	
+}
+
+void AUS_Character::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AUS_Character,Score);
 }
 
 void AUS_Character::UpdateCharacterStats(int32 CharacterLevel)
