@@ -62,6 +62,13 @@ void AUS_Character::BeginPlay()
 	UpdateCharacterStats(1);
 }
 
+void AUS_Character::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+
+}
+
 void AUS_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

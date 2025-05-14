@@ -25,6 +25,7 @@ protected:
 
 	FTimerHandle XpTimerHandle;
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 	void AddXPDebag();
 	
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly, ReplicatedUsing="OnRep_Xp",Category="Experience")

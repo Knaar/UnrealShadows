@@ -10,6 +10,7 @@
 void AUS_PlayerState::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	if (HasAuthority())
 	{
 		GetWorld()->GetTimerManager().SetTimer(
@@ -22,17 +23,25 @@ void AUS_PlayerState::BeginPlay()
 	}
 }
 
+void AUS_PlayerState::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	GEngine->AddOnScreenDebugMessage(0, DeltaSeconds, FColor::Yellow, FString::Printf(TEXT("ScoreIs: %d"), Xp));
+}
+
 void AUS_PlayerState::AddXPDebag()
 {
-	AddXP(25);
+	//AddXP(25);
 }
 
 void AUS_PlayerState::OnRep_Xp(int32 OldValue)
 {
+	OnXPChanged.Broadcast(Xp);
 }
 
 void AUS_PlayerState::OnRep_CharacterLevel(int32 OldValue)
 {
+	OnCharacterLevelUP.Broadcast(CharacterLevel);
 }
 
 void AUS_PlayerState::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -44,37 +53,32 @@ void AUS_PlayerState::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>
 
 void AUS_PlayerState::AddXP(int32 Value)
 {
-	if (HasAuthority())
-	{
-		Xp += Value;
-		OnXPChanged.Broadcast(Value);
-		GEngine->AddOnScreenDebugMessage(1, 5, FColor::Red, FString::Printf(TEXT("Xp: %d"), Value));
+	Xp += Value;
+	OnXPChanged.Broadcast(Value);
+	GEngine->AddOnScreenDebugMessage(1, 5, FColor::Red, FString::Printf(TEXT("Xp: %d"), Value));
 
-		APawn* Pawn;
-		auto PC = Cast<APlayerController>(GetOwner());
-		if (PC)
-		{
-			Pawn = PC->GetPawn();
-		}
-		else
-		{
-			Pawn = GetPawn();
-		}
-	
-		if (!Pawn) Erreturn("US_PlayerState can't find Pawn");
-		auto Character= Cast<AUS_Character>(Pawn);
-		if (!Character) Erreturn("US_PlayerState Cast Pawn Failed");
-		auto Stats = Character->GetCharacterStats();
-		if (Stats==nullptr) Erreturn("US_PlayerState CharacterStats Failed");
-	
-		if (Stats->NextLevelXp<Xp)
-		{
-			GEngine->AddOnScreenDebugMessage(1, 5, FColor::Red, FString::Printf(TEXT("Level Up")));
-			CharacterLevel++;
-			Character->UpdateCharacterStats(CharacterLevel);
-			OnCharacterLevelUP.Broadcast(CharacterLevel);
-		}
-	
+	APawn* Pawn;
+	auto PC = Cast<APlayerController>(GetOwner());
+	if (PC)
+	{
+		Pawn = PC->GetPawn();
+	}
+	else
+	{
+		Pawn = GetPawn();
 	}
 	
+	if (!Pawn) Erreturn("US_PlayerState can't find Pawn");
+	auto Character= Cast<AUS_Character>(Pawn);
+	if (!Character) Erreturn("US_PlayerState Cast Pawn Failed");
+	auto Stats = Character->GetCharacterStats();
+	if (Stats==nullptr) Erreturn("US_PlayerState CharacterStats Failed");
+	
+	if (Stats->NextLevelXp<Xp)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 5, FColor::Red, FString::Printf(TEXT("Level Up")));
+		CharacterLevel++;
+		Character->UpdateCharacterStats(CharacterLevel);
+		OnCharacterLevelUP.Broadcast(CharacterLevel);
+	}
 }
